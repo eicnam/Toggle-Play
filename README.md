@@ -1,4 +1,4 @@
-Android-Store-Project
+Toggle-Play
 =====================
 
-Android Store project repo
+Toggle Play repo
