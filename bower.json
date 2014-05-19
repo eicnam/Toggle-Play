@@ -1,0 +1,9 @@
+{
+  "name": "Toggle-Play",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "~1.2.x",
+  }
+}
