@@ -4,12 +4,10 @@ var togglePlayApp = angular.module('togglePlayApp', [
   'ngRoute',
   'togglePlayControllers'
 ]);
-togglePlayApp.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
-    $locationProvider.hashPrefix('!');
+togglePlayApp.config(['$routeProvider',
+  function($routeProvider) {
     $routeProvider.
-      when('la', {
+      when('/la', {
         templateUrl: 'views/partials/partial1.html',
         controller: 'togglePlayCtrl'
       }).
@@ -17,6 +15,6 @@ togglePlayApp.config(['$routeProvider', '$locationProvider',
         templateUrl: 'views/home.html'
       }).
       otherwise({
-        redirectTo: '/home'
+        redirectTo: '/la'
       });
   }]);
