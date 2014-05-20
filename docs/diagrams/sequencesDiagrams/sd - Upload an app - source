@@ -1,0 +1,36 @@
+title sd : Upload an app
+
+Authenticated User->+TogglePlay: registerAnApp()
+    TogglePlay->+App: createApp()
+    App-->-TogglePlay: App
+TogglePlay-->-Authenticated User: AppView
+Authenticated User->+TogglePlay: sendAppDescription(Description)
+alt descriptionValide
+        TogglePlay->+App: setDescription(Description)
+        App-->-TogglePlay: App
+    TogglePlay-->Authenticated User: AppView
+else descriptionInvalide
+    TogglePlay-->-Authenticated User: AppViewWithErrors
+end
+
+Authenticated User->+TogglePlay: sendSourceCode(SourceCode)
+TogglePlay->TogglePlay: validateSourceCode()
+alt SourceCodeValide
+        TogglePlay->+App: setSourceCode(SourceCode)
+        App-->-TogglePlay: App
+    TogglePlay-->Authenticated User: AppView
+else SourceCodeInvalide
+    TogglePlay-->-Authenticated User: AppViewWithErrors
+end
+
+
+
+Authenticated User->+TogglePlay: publish()
+alt AppValide
+    TogglePlay-->Authenticated User: PublicAppView
+else AppInvalide
+    TogglePlay-->-Authenticated User: AppViewWithErrors
+end
+
+
+
