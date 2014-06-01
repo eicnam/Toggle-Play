@@ -2,13 +2,20 @@
 
 var togglePlayControllers = angular.module('togglePlayControllers', []);
 
-togglePlayControllers.controller('togglePlayCtrl', ['$scope',
-  function ($scope) {
+togglePlayControllers.controller('togglePlayCtrl', ['$scope','$http',
+  function ($scope,$http) {
 	console.log("ici");
 	$scope.appname="salut";
-	/*var mongoose = require('mongoose');  
-	mongoose.connect('mongodb://localhost/test', function(err) {
-		if (err) { throw err; }
-	});*/
+
+	$scope.insertInDatabase = function(){
+		$http({method: 'GET', url: '/api/application'}).
+		    success(function(data, status, headers, config) {
+			    $scope.appname = data; 
+			    console.log(data);
+		    }).
+		    error(function(data, status, headers, config) {
+			    console.log('Error: ' + data);
+		    });	
+	}
   }
 ]);

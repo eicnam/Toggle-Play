@@ -1,3 +1,10 @@
 <div>
   <p>Nothing here {{appname}}</p>
+  <form action="/api/application" method="get">
+    <button type="submit" value="submit">Button not using angular directive</button>
+  </form>
+
+  <form>
+  <button ng-click="insertInDatabase()">Button using angular directive</button>
+  </form>
 </div>
