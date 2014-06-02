@@ -1,9 +1,30 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express(); 
+var passport = require("passport");
+var TwitterStrategy = require("passport-twitter").strategy;
+
+var TWITTER_CONSUMER_KEY = "";
+var TWITTER_CONSUMER_SECRET = "";
 
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser());
+app.use(express.cookieParser());
+app.use(express.session({secret: 'SECRET'}));
+app.use(passport.initialize());
+app.use(passport.session()); 
+
+passport.use( new TwitterStrategy({
+	consumerKey: TWITTER_CONSUMER_KEY,
+	consumerSecret: TWITTER_CONSUMER_SECRET,
+	callbackURL: ""
+},
+function(token,tokenSecret,profile,done){
+	process.nextTick(function(){
+		return done(null,profile);
+	});
+}
+));
 
 var port = process.env.PORT || 8080; 
 var router = express.Router(); 
