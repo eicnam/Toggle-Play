@@ -4,6 +4,8 @@ var togglePlayApp = angular.module('togglePlayApp', [
   'ngRoute',
   'togglePlayControllers'
 ]);
+
+
 togglePlayApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -13,8 +15,5 @@ togglePlayApp.config(['$routeProvider',
       }).
       when('/home', {
         templateUrl: 'views/home.html'
-      }).
-      otherwise({
-        redirectTo: '/la'
       });
   }]);
