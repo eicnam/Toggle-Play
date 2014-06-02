@@ -1,8 +1,8 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
-var ApplicationSchema   = new Schema({
+var ApplicationModSchema   = new Schema({
 	name: String
 });
 
-module.exports = mongoose.model('Application', ApplicationSchema);
+module.exports = mongoose.model('Application', ApplicationModSchema);

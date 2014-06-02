@@ -7,7 +7,7 @@ router.route('/').get(function(req, res) {
 		//her we'll send the home page
 		/*res.json({ message: 'hooray! welcome to our api!' });	*/
 		res.send('main');
-	});
+});
 
 
 
