@@ -17,7 +17,7 @@ app.use(passport.session());
 passport.use( new TwitterStrategy({
 	consumerKey: TWITTER_CONSUMER_KEY,
 	consumerSecret: TWITTER_CONSUMER_SECRET,
-	callbackURL: ""
+	callbackURL: "/auth/twitter"
 },
 function(token,tokenSecret,profile,done){
 	process.nextTick(function(){
@@ -41,6 +41,14 @@ router.use(function(req, res, next) {
 	next();
 });
 
+router.route('/auth/twitter')
+	.get(passport.authenticate('twitter'));
+
+router.route('/auth/twitter/callback')
+  .get(passport.authenticate('twitter', { 
+	successRedirect: '/',
+	failureRedirect: '/login'
+  }));
 
 router.route('/api/application')
 	//this is a test : add a new application in the mongo database
