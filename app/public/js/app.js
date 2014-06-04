@@ -3,6 +3,7 @@
 var togglePlayApp = angular.module('togglePlayApp', [
   'ngRoute',
   'togglePlayControllers'
+  //,'AppController'
 ]);
 togglePlayApp.config(['$routeProvider',
   function($routeProvider) {

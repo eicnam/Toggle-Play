@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://toggle:toggle@ds049868.mongolab.com:49868/toggle');
-var Application = require('./models/application');
+
 
 
 module.exports = app;

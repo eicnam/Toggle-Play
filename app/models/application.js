@@ -1,8 +1,40 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema,     ObjectId = Schema.ObjectId;
 
-var ApplicationModSchema   = new Schema({
-	name: String
+var ApplicationSchema = new Schema({
+    
+    name: String
+
+
+
 });
 
-module.exports = mongoose.model('Application', ApplicationModSchema);
+
+
+/**
+ * Article Schema
+ */
+var ArticleSchema = new Schema({
+    id: ObjectId,
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    appTitle: {
+        type: String,
+        required: true,         
+        trim: true
+    },
+    description: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    lien: {
+        type: String,
+        default: '',
+    }
+});
+
+
+module.exports = mongoose.model('Application', ApplicationSchema);

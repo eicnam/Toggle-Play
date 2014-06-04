@@ -19,3 +19,21 @@ togglePlayControllers.controller('togglePlayCtrl', ['$scope','$http',
 	}
   }
 ]);
+
+
+//togglePlayControllers.controller('AppController', ['$scope', '$http',function($scope,$http) {
+//      
+//     $scope.find = function(){
+//		$http({method: 'GET', url: '/app'}).
+//		    success(function(data, status, headers, config) {
+//			    $scope.mesApp = data; 
+//			    console.log(data);
+//		    }).
+//		    error(function(data, status, headers, config) {
+//			    console.log('Error: ' + data);
+//		    });	
+//	}
+//       
+// 
+//   
+//}]);
