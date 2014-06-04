@@ -2,7 +2,7 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express(); 
 var passport = require("passport");
-var TwitterStrategy = require("passport-twitter").strategy;
+var TwitterStrategy = require("passport-twitter").Strategy;
 
 var TWITTER_CONSUMER_KEY = "";
 var TWITTER_CONSUMER_SECRET = "";
@@ -18,9 +18,9 @@ passport.use( new TwitterStrategy({
 	consumerKey: TWITTER_CONSUMER_KEY,
 	consumerSecret: TWITTER_CONSUMER_SECRET,
 	callbackURL: "/auth/twitter"
-},
-function(token,tokenSecret,profile,done){
-	process.nextTick(function(){
+	},
+	function(token,tokenSecret,profile,done){
+		process.nextTick(function(){
 		return done(null,profile);
 	});
 }
@@ -73,6 +73,12 @@ router.route('/api/application')
 			res.json({ message: 'Application created!' });
 	      });
       });
+
+router.route('/login')
+	.get(function(req, res){
+		res.json({log: 'useq'});
+	}
+);
 
 router.route('/')
 	.get(function(req, res) {
