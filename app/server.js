@@ -4,8 +4,8 @@ var app        = express();
 var passport = require("passport");
 var TwitterStrategy = require("passport-twitter").Strategy;
 
-var TWITTER_CONSUMER_KEY = "";
-var TWITTER_CONSUMER_SECRET = "";
+var TWITTER_CONSUMER_KEY = "7gvGiNP4gTDNql7IXwf2FIGTv";
+var TWITTER_CONSUMER_SECRET = "2TQAD5HRtokFiO9wvKB6bF2noHqZOmiz1RShWRUjGmcYUUDJp0";
 
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser());
@@ -17,7 +17,7 @@ app.use(passport.session());
 passport.use( new TwitterStrategy({
 	consumerKey: TWITTER_CONSUMER_KEY,
 	consumerSecret: TWITTER_CONSUMER_SECRET,
-	callbackURL: "/auth/twitter"
+	callbackURL: "/auth/twitter/callback"
 	},
 	function(token,tokenSecret,profile,done){
 		process.nextTick(function(){
