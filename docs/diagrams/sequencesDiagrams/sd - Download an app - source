@@ -1,0 +1,32 @@
+title sd : Download an app
+
+Authenticated User->+TogglePlay: search(name)
+TogglePlay-->-Authenticated User: listApp
+
+
+Authenticated User->+TogglePlay: consultApp(id)
+    TogglePlay->+App: getData()
+    App-->-TogglePlay: data
+TogglePlay-->-Authenticated User: AppView
+
+alt freeApp
+    Authenticated User->+TogglePlay: download(id)
+    TogglePlay-->-Authenticated User: App
+else payApp
+    Authenticated User->+TogglePlay: addIntoBasket()
+        TogglePlay->+Basket: addIntoBasket()
+        Basket-->-TogglePlay: Basket
+    TogglePlay-->-Authenticated User: BasketView
+
+    Authenticated User->+TogglePlay: confirmPurchase()
+    TogglePlay-->-Authenticated User: PaymentView
+
+    Authenticated User->+TogglePlay: paymentConfirmed()
+        TogglePlay->TogglePlay: confirmPayment()
+        alt PaymentConfirmed
+            TogglePlay-->Authenticated User: App
+        else PaymentNotConfirmed
+            TogglePlay-->-Authenticated User: BasketView
+        end
+end
+

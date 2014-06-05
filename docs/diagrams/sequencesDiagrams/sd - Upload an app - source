@@ -1,0 +1,24 @@
+title sd : Upload an app
+
+Authenticated User->+TogglePlay: registerAnApp()
+    TogglePlay->+App: createApp()
+    App-->-TogglePlay: App
+TogglePlay-->-Authenticated User: AppView
+
+loop invalidData
+
+    Authenticated User->+TogglePlay: sendAppData(Data)
+    TogglePlay->TogglePlay: validateData()
+    alt validData
+            TogglePlay->+App: setData(Data)
+            App-->-TogglePlay: App
+        TogglePlay-->Authenticated User: AppView
+    else invalidData
+        TogglePlay-->-Authenticated User: AppViewWithErrors
+    end
+end
+
+Authenticated User->+TogglePlay: publish()
+TogglePlay-->Authenticated User: PublicAppView
+
+
