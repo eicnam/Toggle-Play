@@ -1,10 +1,40 @@
 <div>
-  <p>Nothing here {{appname}}</p>
-  <form action="/api/application" method="get">
-    <button type="submit" value="submit">Button not using angular directive</button>
-  </form>
+	<h1>Toggle Play</h1>
 
-  <form>
-  <button ng-click="insertInDatabase()">Button using angular directive</button>
-  </form>
+	<p>Nothing here {{appname}}</p>
+
+	<form action="/api/application" method="post">
+		<button type="submit" value="submit">Button not using angular directive POST</button>
+	</form>
+
+	<form>
+		<button ng-click="insertInDatabase()">Button using angular directive</button>
+	</form>
 </div>
+
+<div id='app-operations'>
+	<h2>App Operations</h2>
+
+	<h3>GetAll</h3>
+	<form action="/api/application" method="get">
+		<button type="submit" value="submit">Display all Apps</button>
+	</form>
+
+	<h3>Get App</h3>
+	<a href="/api/application/Twitter">Display Twitter App (href=/api/application/Twitter)</a><br>
+	<a href="/api/application/Facebook">Display Facebook App (href=/api/application/Facebook)</a><br>
+	<a href="/api/application/Pinterest">Display Pintereet App (href=/api/application/Pinterest)</a><br>
+
+	<h3>Add</h3>
+	<form action="/api/application/add" method="post">
+		<input type='text' name='app[name]' placeholder='Enter an app name' value='' />
+		<input type='text' name='app[author]' placeholder='Enter the author name' value='' />
+		<input type='text' name='app[description]' placeholder='Enter a description' value='' />
+		<button type="submit" value="submit">Add an App</button>
+	</form>
+
+</div>
+
+<script type="text/javascript">
+	alert('test');
+</script>
