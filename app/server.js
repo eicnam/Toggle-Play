@@ -52,6 +52,37 @@ router.route('/api/application/add')
 		});
 	});
 
+router.route('/api/application/update/:appid')
+	.put(function(req, res) {
+		db_app.findById(req.params.appid, function(err, _app) {
+			if (err)
+				res.send(err);
+
+			_app.name = req.body.name;
+			_app.author = req.body.author;
+			_app.description = req.body.description;
+
+			_app.save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: _app.name + ' updated !' });
+			});
+		});
+	});
+
+router.route('/api/application/delete/:appid')
+	.delete(function(req, res) {
+		db_app.remove({
+			_id: req.params.appid
+		}, function(err, _app) {
+			if (err)
+				res.send(err);
+
+			res.json({ message: 'App successfully deleted' });
+		});
+	});
+
 router.route('/')
 	.get(function(req, res) {
 		/*res.redirect('../index.html');*/
