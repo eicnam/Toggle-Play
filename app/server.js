@@ -21,34 +21,22 @@ router.use(function(req, res, next) {
 	next();
 });
 
-router.route('/api/application/:app_name')
-	.get(function(req, res){
-		var app_name = req.params.app_name;
-		db_app.findOne({ name : app_name }, function (err, app) {
-			if (err) return next(err);
-			res.json({ 'SELECT * FROM Application WHERE name = app_name;' : app });
-		});
-	});
-
-router.route('/api/application')
-	.get(function(req, res) {
-		db_app.find(function (err, apps) {
-			if (err) return next(err);
-			res.json({ 'SELECT * FROM Application;' : apps });
-		});
-	});
-
 router.route('/api/application/add')
 	.post(function(req, res){
 		var newApp = new db_app();
-		newApp.name = req.body.app.name;
-		newApp.author = req.body.app.author;
-		newApp.description = req.body.app.description;
+		newApp.name = req.body.name;
+		newApp.author = req.body.author;
+		newApp.description = req.body.description;
+		newApp.publicationDate = new Date();
+		newApp.lastUpdateDate = new Date();
+
+		var before = newApp.description;
 
 		newApp.save(function(err) {
 			if (err)
 				res.send(err);
-			res.json({ message: 'New App created : ' + newApp.name + '!' });
+			
+			res.json({ message: 'The App ' + newApp.name + ' has been created !'});
 		});
 	});
 
@@ -61,12 +49,14 @@ router.route('/api/application/update/:appid')
 			_app.name = req.body.name;
 			_app.author = req.body.author;
 			_app.description = req.body.description;
+			_app.publicationDate = _app.publicationDate;
+			_app.lastUpdateDate = new Date();
 
 			_app.save(function(err) {
 				if (err)
 					res.send(err);
 
-				res.json({ message: _app.name + ' updated !' });
+				res.json({ message: 'The App ' + _app.name + ' has been updated !' });
 			});
 		});
 	});
@@ -79,7 +69,32 @@ router.route('/api/application/delete/:appid')
 			if (err)
 				res.send(err);
 
-			res.json({ message: 'App successfully deleted' });
+			// get and return all the apps after you delete another
+			db_app.find(function(err, apps) {
+				if (err)
+					res.send(err)
+				
+				res.json({ message: 'App successfully deleted !', apps: apps });
+			});
+		});
+	});
+
+router.route('/api/application/:app_name')
+	.get(function(req, res){
+		var app_name = req.params.app_name;
+		db_app.findOne({ name : app_name }, function (err, app) {
+			if (err) return next(err);
+
+			res.json({ 'appDetails' : app });
+		});
+	});
+
+router.route('/api/application')
+	.get(function(req, res) {
+		db_app.find(function (err, apps) {
+			if (err) return next(err);
+			
+			res.json({ 'apps' : apps });
 		});
 	});
 
