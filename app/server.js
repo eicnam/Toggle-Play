@@ -30,8 +30,6 @@ router.route('/api/application/add')
 		newApp.publicationDate = new Date();
 		newApp.lastUpdateDate = new Date();
 
-		var before = newApp.description;
-
 		newApp.save(function(err) {
 			if (err)
 				res.send(err);
