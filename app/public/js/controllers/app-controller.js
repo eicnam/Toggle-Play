@@ -123,6 +123,16 @@ togglePlayControllers
 					.error(function(data) {
 						$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
 					});
+				// Close the modal
+				$('#modal-confirm-deletion').foundation('reveal', 'close');
 			}
+			// Call for update modal content
+			$scope.selectApp = function(id, name){
+				$scope.appId = id;
+				$scope.appName = name;
+			}
+
+			// Reinitialize foundation for modal uses
+			$(document).foundation();
 		}]
 	);
