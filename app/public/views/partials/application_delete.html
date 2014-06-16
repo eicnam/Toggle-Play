@@ -3,7 +3,7 @@
 <br>
 <br>
 <div class="row">
-	<div class="panel radius small-6 columns panel large-centered">
+	<div class="panel callout radius small-6 columns large-centered">
 		<h3><b>Which App want you to delete ?</b></h3>
 		<br>
 			<div class="row" ng-repeat="app in apps">
@@ -12,6 +12,12 @@
 				</div>
 				<div class="small-3 columns">
 					<button class="button tiny radius" style="margin-bottom:0;" ng-click="deleteApp(app._id)">Delete</button>
+				</div>
+			</div>
+			<div ng-show="!apps.length" class="slide-animate-container">
+				<div class="slide-animate panel radius">
+					<h5>Sorry, we are Without Apps Fixed</h5>
+					<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>
 				</div>
 			</div>
 	</div>

@@ -3,7 +3,7 @@
 <br>
 <br>
 <div class="row">
-	<div class="panel radius small-6 columns panel large-centered">
+	<div class="panel callout radius small-6 columns large-centered">
 		<h3><b>Which App want you to update ?</b></h3>
 		<br>
 			<div class="row" ng-repeat="app in apps">
@@ -14,13 +14,19 @@
 					<button class="button tiny radius" style="margin-bottom:0;" ng-click="getAppForUpdate(app.name)">Update</button>
 				</div>
 			</div>
+			<div ng-show="!apps.length" class="slide-animate-container">
+				<div class="slide-animate panel radius">
+					<h5>Sorry, we are Without Apps Fixed</h5>
+					<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>
+				</div>
+			</div>
 	</div>
 </div>
 <br>
 <br>
 <div class="row">
 	<div class="large-10 large-centered columns">
-		<div ng-show="app_update" class="panel radius">
+		<div ng-show="app_update" class="panel callout radius">
 			<h2><b>{{ app_update.name }}</b></h2>
 			<hr>
 			<form>
