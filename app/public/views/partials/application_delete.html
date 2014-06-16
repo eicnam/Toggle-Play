@@ -41,11 +41,11 @@
 	</div>
 	<br>
 	<div class="row">
-		<div class="large-8 columns" style="vertical-align:middle;">
-			<p style="margin-bottom:0;">Are you sure you want to delete the App : <a ng-href="/#/Apps/{{ appName }}">{{ appName }}</a> and all its contents ?</p>
+		<div class="large-8 columns">
+			<p >Are you sure you want to delete the App : <a ng-href="/#/Apps/{{ appName }}">{{ appName }}</a> and all its contents ?</p>
 		</div>
 		<div class="large-4 columns">
-			<button data-tooltip title="Action not <b>reversible</b> !" ng-click="deleteApp(appId)" class="has-tip tiny button radius success">Delete</button>
+			<button data-tooltip title="Action <b>not reversible</b> !" ng-click="deleteApp(appId)" class="has-tip tiny button radius success">Delete</button>
 		</div>
 	</div>
 	<a class="close-reveal-modal">&#215;</a>
