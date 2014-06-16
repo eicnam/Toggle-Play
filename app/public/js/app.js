@@ -4,8 +4,8 @@ var togglePlayApp = angular.module('togglePlayApp', [
   'ngRoute',
   'togglePlayControllers'
   ]);
-togglePlayApp.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+togglePlayApp.config(['$routeProvider'/*, '$locationProvider'*/,
+  function($routeProvider/*, $locationProvider*/) {
     $routeProvider.
       when('/Apps/Add', {
         templateUrl: 'views/partials/application_add.html',
@@ -43,5 +43,5 @@ togglePlayApp.config(['$routeProvider', '$locationProvider',
       });
 
     // use the HTML5 History API
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
 }]);

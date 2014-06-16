@@ -8,7 +8,7 @@
 		<br>
 			<div class="row" ng-repeat="app in apps">
 				<div class="small-4 columns">
-					<label for="right-label" style="margin-bottom:0;" class="left inline"><a ng-href="/Apps/{{ app.name }}">{{ app.name }}</a></label>
+					<label for="right-label" style="margin-bottom:0;" class="left inline"><a ng-href="/#/Apps/{{ app.name }}">{{ app.name }}</a></label>
 				</div>
 				<div class="small-3 columns">
 					<button class="button tiny radius" style="margin-bottom:0;" ng-click="deleteApp(app._id)">Delete</button>
