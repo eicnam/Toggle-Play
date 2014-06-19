@@ -1,0 +1,51 @@
+<h2><b>{{ title }}</b> <small>{{ subtitle }}</small></h2>
+<br>
+<br>
+<form>
+	<div class="row">
+		<div class="small-8 columns">
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="name" class="right inline">App Name</label>
+				</div>
+				<div class="small-9 columns">
+					<input type='text' name='app[name]' ng-model="newApp.name" placeholder='Enter an app name' />
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="author" class="right inline">Author</label>
+				</div>
+				<div class="small-9 columns">
+					<input type='text' name='app[author]' ng-model="newApp.author" placeholder='Enter the author name' />
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="description" class="right inline">Description</label>
+				</div>
+				<div class="small-9 columns">
+					<textarea id="description" rows="7" style="max-width:100%;" name='app[description]' ng-model="newApp.description"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="small-4 columns text-center">
+			<br>
+			<br>
+			<br>
+			<input type="submit" class="button small radius success" value="Add" ng-click="createApp()" />
+		</div>
+	</div>
+</form>
+<br>
+<br>
+<div class="row">
+	<div class="large-6 large-centered columns">
+		<div ng-show="confirmMessage" data-alert class="alert-box success round">
+			{{ confirmMessage }}
+		</div>
+		<div ng-show="error" data-alert class="alert-box alert round">
+			{{ error }}
+		</div>
+	</div>
+</div>

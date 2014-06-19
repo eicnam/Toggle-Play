@@ -1,18 +1,92 @@
 <!doctype html>
 <html ng-app="togglePlayApp">
-<head>
-  <meta charset="utf-8">
-  <title>TogglePlay</title>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<title>Toggle Play</title>
 
-  <script src="js/app.js"></script>
-  <script src="js/controllers/controller.js"></script>
+		<!-- Angular scripts -->
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
 
-</head>
-<body>
+		<!-- Angular App scripts -->
+		<script src="js/app.js"></script>
+		<script src="js/controllers/app-controller.js"></script>
 
-<div ng-view></div>
-</body>
+		<!-- Foundation CSS Files -->
+		<link rel="stylesheet" type="text/css" href="../styles/css/foundation.css" />
+		<link rel="stylesheet" type="text/css" href="../styles/css/foundation.min.css" />
+		<link rel="stylesheet" type="text/css" href="../styles/css/normalize.css" />
+		<style type="text/css">
+			.container{
+				padding: 60px;
+			}
+		</style>
+
+		<base href="/">
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<div class="fixed">
+					<nav class="tab-bar top-bar">
+						<section class="left-small">
+							<a class="left-off-canvas-toggle menu-icon"><span></span></a>
+						</section>
+						<section class="middle tab-bar-section">
+							<div class="row">
+								<div class="large-3 columns"><h1 class="title"><a href="#">Toggle Play</a></h1></div>
+								<div class="large-6 columns"></div>
+								<div class="large-3 columns text-right">Logged as <i>The Cobaye</i></div>
+							</div>
+						</section>
+						<!--<section class="right-small"></section>-->
+					</nav>
+				</div>
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><label>Apps</label></li>
+						<li><a href="/#/Apps">App Home (All Apps)</a></li>
+						<li><a href="#">Category #1</a></li>
+						<li><a href="#">Category #2</a></li>
+						<li><a href="#">Category #3</a></li>
+						<li><a href="#">Category #4</a></li>
+					</ul>
+					<ul class="off-canvas-list">
+						<li><label>Account</label></li>
+						<li><a href="#">Change settings</a></li>
+						<li><a href="#">Uploaded Apps</a></li>
+						<li><a href="#">Credits</a></li>
+					</ul>
+					<ul class="off-canvas-list">
+						<li><label>Developers</label></li>
+						<li><a href="/#/Apps/Add">Add an App</a></li>
+						<li><a href="/#/Apps/Update">Update an App</a></li>
+						<li><a href="/#/Apps/Delete">Delete an App</a></li>
+					</ul>
+				</aside>
+				
+				<!-- Contents -->
+				<section class="main-section" style="height:100%; overflow:auto;">
+					<div class="container">
+						<div ng-view></div>
+					</div>
+				</section><a class="exit-off-canvas"></a>
+			</div>
+		</div>
+		
+		<!-- Foundation Javascripts -->
+		<script src="../styles/js/vendor/jquery.js"></script>
+		<script src="../styles/js/vendor/modernizr.js"></script>
+		<script src="../styles/js/foundation.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$(document).foundation({
+					equalizer : {
+						// Specify if Equalizer should make elements equal height once they become stacked.
+						equalize_on_stack: true
+					}
+				});
+			});
+		</script>
+	</body>
 </html>
-

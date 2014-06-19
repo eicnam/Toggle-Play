@@ -1,0 +1,47 @@
+<div class="row" data-equalizer>
+	<div class="large-8 columns" data-equalizer-watch>
+		<h2><b>{{ title }}</b></h2>
+	</div>
+	<div class="large-4 columns" data-equalizer-watch>
+		<a class="button radius right" style="vertical-align:middle;margin-bottom:0;" href="/#/Apps">Back to App List</a>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="large-8 columns">
+		<h4><u><i><b>Description :</b></i></u></h4>
+		<br>
+		<blockquote><pre>{{ app.description }}</pre></blockquote>
+		<br>
+		Categories : <span class="label secondary">category #2</span> <span class="label success">category #4</span> <span class="label alert">category #6</span>
+	</div>
+	<div class="large-4 columns panel">
+		<div id="image" class="row" style="text-align:center;">
+			<a class="th" href="../../content/image-app-default.png">
+				<img src="../../content/image-app-default.png" alt="{{ app.name }}" width="150" height="150">
+			</a>
+		</div>
+		<hr>
+		<div class"row text-center">
+			<label>Author : </label>
+			{{ app.author }}
+			<br>
+			<br>
+			<label>Cost : </label>
+			{{ 'Free' }}
+			<br>
+			<br>
+			<label>Publication Date : </label>
+			{{ app.publicationDate | date : 'fullDate' }}
+			<br>
+			<br>
+			<label>Last Update Date : </label>
+			{{ app.lastUpdateDate | date : 'fullDate' }}			
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<div ng-show="error" data-alert class="alert-box alert round">
+	{{ error }}
+</div>

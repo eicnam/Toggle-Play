@@ -1,0 +1,52 @@
+<h2><b>{{ title }}</b></h2> <h3>{{ subtitle }}</h3>
+<hr>
+<br>
+<br>
+<div class="row">
+	<div class="panel callout radius small-6 columns large-centered">
+		<h3><b>Which App want you to delete ?</b></h3>
+		<br>
+			<div class="row" ng-repeat="app in apps">
+				<div class="small-4 columns">
+					<label for="right-label" style="margin-bottom:0;" class="left inline"><a ng-href="/#/Apps/{{ app.name }}">{{ app.name }}</a></label>
+				</div>
+				<div class="small-3 columns">
+					<button class="button tiny radius" style="margin-bottom:0;" data-reveal-id="modal-confirm-deletion" ng-click="selectApp(app._id, app.name)">Delete</button>
+				</div>
+			</div>
+			<div ng-show="!apps.length" class="slide-animate-container">
+				<div class="slide-animate panel radius">
+					<h5>Sorry, we are Without Apps Fixed</h5>
+					<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>
+				</div>
+			</div>
+	</div>
+</div>
+<br>
+<br>
+<div class="row">
+	<div class="large-4 large-centered columns">
+		<div ng-show="message" data-alert class="alert-box success round">
+			{{ message }}
+		</div>
+		<div ng-show="error" data-alert class="alert-box alert round">
+			{{ error }}
+		</div>
+	</div>
+</div>
+
+<div id="modal-confirm-deletion" class="reveal-modal" data-reveal>
+	<div class="row">
+		<h2>Deletion of {{ appName }}</h2>
+	</div>
+	<br>
+	<div class="row">
+		<div class="large-8 columns">
+			<p >Are you sure you want to delete the App : <a ng-href="/#/Apps/{{ appName }}">{{ appName }}</a> and all its contents ?</p>
+		</div>
+		<div class="large-4 columns">
+			<button data-tooltip title="Action <b>not reversible</b> !" ng-click="deleteApp(appId)" class="has-tip tiny button radius success">Delete</button>
+		</div>
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>

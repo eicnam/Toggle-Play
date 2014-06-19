@@ -1,0 +1,26 @@
+<h2><b>{{ title }}</b></h2> <h3>{{ subtitle }}</h3>
+<br>
+<br>
+<div class="row" data-equalizer>
+	<div class="large-3 columns" ng-repeat="app in apps">
+
+		<ul class="pricing-table" data-equalizer-watch>
+			<li class="title">{{ app.name }}</li>
+			<li class="text-center"><img src="../../content/image-app-default.png" alt="{{ app.name }}"></li>
+			<li class="description">{{ app.author }}</li>
+			<li class="price"><i>free</i></li>
+			<li class="cta-button"><a class="button" ng-href="/#/Apps/{{ app.name }}">More Info ...</a></li>
+		</ul>
+	</div>
+	<div ng-show="!apps.length" class="slide-animate-container">
+		<div class="slide-animate panel radius">
+			<h5>Sorry, we are Without Apps Fixed</h5>
+			<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<div ng-show="error" data-alert class="alert-box alert round">
+	{{ error }}
+</div>
