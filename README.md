@@ -1,7 +1,7 @@
 Toggle-Play
 ===========
 
-Android Store Style Web Application, allowing the publication of Android Apps
+Toggle Play is a project which allows users to download and share Apps for Android devices. It looks like Google Play Store and re-use its main functionalities.
 
 1. Fork
 2. `npm install`
