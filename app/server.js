@@ -1,6 +1,9 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
-var app        = express(); 
+var app        = express();
+var fs         = require('fs');
+
+var category_path = "./public/content/category.json";
 
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser());
@@ -29,6 +32,9 @@ router.route('/api/application/add')
 		newApp.description = req.body.description;
 		newApp.publicationDate = new Date();
 		newApp.lastUpdateDate = new Date();
+		newApp.category = req.body.category;
+		newApp.link = req.body.link;
+		newApp.mail = req.body.mail;
 
 		newApp.save(function(err) {
 			if (err)
@@ -36,6 +42,12 @@ router.route('/api/application/add')
 			
 			res.json({ message: 'The App ' + newApp.name + ' has been created !'});
 		});
+	});
+
+router.route('/api/application/categories')
+	.get(function(req, res){
+		var categories = JSON.parse(fs.readFileSync(category_path, 'utf8'));
+		res.json({ 'categories' : categories.categories });
 	});
 
 router.route('/api/application/update/:appid')
@@ -49,6 +61,9 @@ router.route('/api/application/update/:appid')
 			_app.description = req.body.description;
 			_app.publicationDate = _app.publicationDate;
 			_app.lastUpdateDate = new Date();
+			_app.category = req.body.category;
+			_app.link = req.body.link;
+			_app.mail = req.body.mail;
 
 			_app.save(function(err) {
 				if (err)
