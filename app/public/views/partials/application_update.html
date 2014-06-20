@@ -33,124 +33,28 @@
 				<div class="row">
 					<div class="small-8 columns">
 						<div class="row">
-							<fieldset>
-								<legend>App definition</legend>
-								<div class="row">
-									<div class="small-3 columns">
-										<label for="name" class="right inline">App Name</label>
-									</div>
-									<div class="small-9 columns">
-										<input type='text' name='app[name]' ng-model='app_update.name' />
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-3 columns">
-										<label for="author" class="right inline">Author</label>
-									</div>
-									<div class="small-9 columns">
-										<input type='text' name='app[author]' ng-model='app_update.author' />
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-3 columns">
-										<label for="description" class="right inline">Description</label>
-									</div>
-									<div class="small-9 columns">
-										<textarea id="description" rows="7" style="max-width:100%;" name='app[description]' ng-model='app_update.description'></textarea>
-									</div>
-								</div>
-							</fieldset>
+							<div class="small-3 columns">
+								<label for="name" class="right inline">App Name</label>
+							</div>
+							<div class="small-9 columns">
+								<input type='text' name='app[name]' ng-model='app_update.name' />
+							</div>
 						</div>
-						<br>
 						<div class="row">
-							<fieldset>
-								<legend>Image App</legend>
-								<div class="row">
-									<div class="small-3 columns">
-										<label for="image-upload" class="right inline">Upload image</label>
-									</div>
-									<div class="small-9 columns" flow-init flow-name="newApp.image">
-										<button class="button radius tiny success" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Select image</button>
-										<button class="button radius tiny secondary" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Change</button>
-										<button class="button radius tiny alert" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</button>
-										Only PNG,GIF,JPG files allowed.
-										<div ng-hide="$flow.files.length">
-											<img src="../../content/image-app-default.png" alt="Default Image" />
-											<br>
-											<br>
-											<table style="margin-bottom:0;">
-												<tr>
-													<td>Attributed file :</td>
-													<td>Defaut image</td>
-												</tr>
-											</table>
-										</div>
-										<div ng-show="$flow.files.length">
-											<img flow-img="$flow.files[0]" height="150px" />
-											<br>
-											<br>
-											<table style="margin-bottom:0;">
-												<tr ng-repeat="file in $flow.files">
-													<td>Selected file : </td>
-													<td>{{file.name}}</td>
-												</tr>
-											</table>
-										</div>
-									</div>
-								</div>
-							</fieldset>
+							<div class="small-3 columns">
+								<label for="author" class="right inline">Author</label>
+							</div>
+							<div class="small-9 columns">
+								<input type='text' name='app[author]' ng-model='app_update.author' />
+							</div>
 						</div>
-						<br>
 						<div class="row">
-							<fieldset>
-								<legend>Category, link & e-mail</legend>
-								<div class="row">
-
-									<div class="small-3 columns">
-										<label for="category" class="right inline">Category</label>
-									</div>
-									<div class="small-3 columns">
-										<span class="label" style="background-color:{{app_update.category.color}};">
-												{{ app_update.category.label }}
-										</span>
-									</div>
-									<div class="small-5 columns left">
-										<select name='app[category]' ng-model="app_update.category" ng-options="category.label for category in categories">
-											<option value="" selected>Select to update</option>
-										</select>
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-3 columns">
-										<label for="link" class="right inline">Link</label>
-									</div>
-									<div class="small-7 columns left">
-										<div class="row collapse">
-											<div class="small-3 large-2 columns">
-												<span class="prefix">http://</span>
-											</div>
-											<div class="small-9 large-10 columns">
-												<input name="app[link]" type="text" ng-model="app_update.link" placeholder="Enter your URL...">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-3 columns">
-										<label for="email" class="right inline">E-mail</label>
-									</div>
-									<div class="small-7 columns left">
-										<div class="row collapse">
-											<div class="small-3 large-2 columns">
-												<span class="prefix">@</span>
-											</div>
-											<div class="small-9 large-10 columns">
-												<input name="app[mail]" type="text" ng-model="app_update.mail" placeholder="Enter an e-mail to contact support ...">
-											</div>
-										</div>
-									</div>
-								</div>				
-							</fieldset>
+							<div class="small-3 columns">
+								<label for="description" class="right inline">Description</label>
+							</div>
+							<div class="small-9 columns">
+								<textarea id="description" rows="7" style="max-width:100%;" name='app[description]' ng-model='app_update.description'></textarea>
+							</div>
 						</div>
 					</div>
 					<div class="small-4 columns text-center">

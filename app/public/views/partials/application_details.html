@@ -13,13 +13,7 @@
 		<br>
 		<blockquote><pre>{{ app.description }}</pre></blockquote>
 		<br>
-		Category : <span class="label" style="background-color:{{ app.category.color }};">{{ app.category.label }}</span>
-		<br>
-		<br>
-		Related link : <a href="app.link">{{ app.link }}</a>
-		<br>
-		<br>
-		Mail to contact support : <a class="email" href="mailto:app.mail">{{ app.mail }}</a>
+		Categories : <span class="label secondary">category #2</span> <span class="label success">category #4</span> <span class="label alert">category #6</span>
 	</div>
 	<div class="large-4 columns panel">
 		<div id="image" class="row" style="text-align:center;">
@@ -42,7 +36,7 @@
 			<br>
 			<br>
 			<label>Last Update Date : </label>
-			{{ app.lastUpdateDate | date : 'fullDate' }}
+			{{ app.lastUpdateDate | date : 'fullDate' }}			
 		</div>
 	</div>
 </div>

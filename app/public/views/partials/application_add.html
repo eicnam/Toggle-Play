@@ -1,140 +1,32 @@
 <h2><b>{{ title }}</b> <small>{{ subtitle }}</small></h2>
 <br>
 <br>
-<div class="row">
-	<div class="large-6 large-centered columns">
-		<div ng-show="confirmMessage" data-alert class="alert-box success round">
-			{{ confirmMessage }}
-		</div>
-		<div ng-show="error" data-alert class="alert-box alert round">
-			{{ error }}
-		</div>
-	</div>
-</div>
 <form>
 	<div class="row">
 		<div class="small-8 columns">
 			<div class="row">
-				<fieldset>
-					<legend>1 - Define your App</legend>
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="name" class="right inline">App Name</label>
-						</div>
-						<div class="small-9 columns">
-							<input type='text' name='app[name]' ng-model="newApp.name" placeholder='Enter an app name' />
-						</div>
-					</div>
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="author" class="right inline">Author</label>
-						</div>
-						<div class="small-9 columns">
-							<input type='text' name='app[author]' ng-model="newApp.author" placeholder='Enter the author name' />
-						</div>
-					</div>
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="description" class="right inline">Description</label>
-						</div>
-						<div class="small-9 columns">
-							<textarea id="description" rows="7" style="max-width:100%;"margin-bottom:8px;"" name='app[description]' ng-model="newApp.description"></textarea>
-						</div>
-					</div>
-				</fieldset>
+				<div class="small-3 columns">
+					<label for="name" class="right inline">App Name</label>
+				</div>
+				<div class="small-9 columns">
+					<input type='text' name='app[name]' ng-model="newApp.name" placeholder='Enter an app name' />
+				</div>
 			</div>
-			<br>
 			<div class="row">
-				<fieldset>
-					<legend>2 - Add a wonderful image</legend>
-					<div class="row" style="margin-top:5px;">
-						<div class="small-10 columns small-centered panel callout" style="padding: 4px;">
-							A default image will be attributed if do not want to provide a custom image.
-						</div>
-					</div>
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="image-upload" class="right inline">Upload image</label>
-						</div>
-						<div class="small-9 columns" flow-init flow-name="newApp.image">
-							<button class="button radius tiny success" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Select image</button>
-							<button class="button radius tiny secondary" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Change</button>
-							<button class="button radius tiny alert" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</button>
-							Only PNG,GIF,JPG files allowed.
-							<div ng-hide="$flow.files.length">
-								<img src="../../content/image-app-default.png" alt="Default Image" />
-								<br>
-								<br>
-								<table style="margin-bottom:0;">
-									<tr>
-										<td>Attributed file :</td>
-										<td>Defaut image</td>
-									</tr>
-								</table>
-							</div>
-							<div ng-show="$flow.files.length">
-								<img flow-img="$flow.files[0]" height="150px" />
-								<br>
-								<br>
-								<table style="margin-bottom:0;">
-									<tr ng-repeat="file in $flow.files">
-										<td>Selected file : </td>
-										<td>{{file.name}}</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-				</fieldset>
+				<div class="small-3 columns">
+					<label for="author" class="right inline">Author</label>
+				</div>
+				<div class="small-9 columns">
+					<input type='text' name='app[author]' ng-model="newApp.author" placeholder='Enter the author name' />
+				</div>
 			</div>
-			<br>
 			<div class="row">
-				<fieldset>
-					<legend>3 - Associate a category, a link, an e-mail</legend>
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="category" class="right inline">Category</label>
-						</div>
-						<div class="small-5 columns left">
-							<select name='app[category]' ng-model="newApp.category" ng-options="category.label for category in categories"></select>
-						</div>
-						<div ng-show="newApp.category" class="small-4 columns">
-								<span class="label" style="background-color:{{newApp.category.color}};">
-									{{ newApp.category.label }}
-								</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="link" class="right inline">Link</label>
-						</div>
-						<div class="small-7 columns left">
-							<div class="row collapse">
-								<div class="small-3 large-2 columns">
-									<span class="prefix">http://</span>
-								</div>
-								<div class="small-9 large-10 columns">
-									<input name="app[link]" type="text" ng-model="newApp.link" placeholder="Enter your URL...">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="email" class="right inline">E-mail</label>
-						</div>
-						<div class="small-7 columns left">
-							<div class="row collapse">
-								<div class="small-3 large-2 columns">
-									<span class="prefix">@</span>
-								</div>
-								<div class="small-9 large-10 columns">
-									<input name="app[mail]" type="text" ng-model="newApp.mail" placeholder="Enter an e-mail to contact support ...">
-								</div>
-							</div>
-						</div>
-					</div>				
-				</fieldset>
+				<div class="small-3 columns">
+					<label for="description" class="right inline">Description</label>
+				</div>
+				<div class="small-9 columns">
+					<textarea id="description" rows="7" style="max-width:100%;" name='app[description]' ng-model="newApp.description"></textarea>
+				</div>
 			</div>
 		</div>
 		<div class="small-4 columns text-center">
@@ -145,3 +37,15 @@
 		</div>
 	</div>
 </form>
+<br>
+<br>
+<div class="row">
+	<div class="large-6 large-centered columns">
+		<div ng-show="confirmMessage" data-alert class="alert-box success round">
+			{{ confirmMessage }}
+		</div>
+		<div ng-show="error" data-alert class="alert-box alert round">
+			{{ error }}
+		</div>
+	</div>
+</div>
