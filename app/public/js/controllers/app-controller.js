@@ -14,8 +14,56 @@ togglePlayControllers
 					$scope.apps = data.apps;
 				})
 				.error(function(data) {
-					$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+					$scope.error = 'An error occurred : ' + data;
 				});
+
+			$http.get('/api/application/categories')
+				.success(function(data) {
+					$scope.categories = data.categories;
+				})
+				.error(function(data) {
+					$scope.error = 'An error occurred : ' + data;
+				});
+
+			$scope.orderProp = 'publicationDate';
+		}]
+	)
+	.controller('AppsFilteredCtrl', ['$scope', '$routeParams', '$http',
+		function ($scope, $routeParams, $http) {
+
+			var selectedCategory = $routeParams.category;
+
+			selectedCategory = selectedCategory.replace(/\&/g, " & ");
+
+			$scope.title = 'Apps > '+ selectedCategory;
+
+			// when landing on the page, get all apps and show them
+			$http.get('/api/application')
+				.success(function(data) {
+					$scope.apps = data.apps;
+				})
+				.error(function(data) {
+					$scope.error = 'An error occurred : ' + data;
+				});
+
+			$http.get('/api/application/categories')
+				.success(function(data) {
+					$scope.categories = data.categories;
+					var i = 0;
+					var found = false;
+					while(i < $scope.categories.length && !found){
+						if($scope.categories[i].label == selectedCategory){
+							$scope.filterCategory = $scope.categories[i];
+							found == true;
+						}
+						i++;
+					}
+				})
+				.error(function(data) {
+					$scope.error = 'An error occurred : ' + data;
+				});
+
+			$scope.orderProp = 'publicationDate';
 		}]
 	)
 	.controller('AppAddCtrl', ['$scope','$http',
@@ -23,6 +71,14 @@ togglePlayControllers
 
 			$scope.title = 'You want to create an App ?';
 			$scope.subtitle = 'It\'s just there !';
+
+			$http.get('/api/application/categories')
+				.success(function(data) {
+					$scope.categories = data.categories;
+				})
+				.error(function(data) {
+					$scope.error = 'An error occurred : ' + data;
+				});
 
 			// when submitting the add form, send the text to the node API
 			$scope.createApp = function() {
@@ -49,7 +105,15 @@ togglePlayControllers
 					$scope.apps = data.apps;
 				})
 				.error(function(data) {
-					$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+					$scope.error = 'An error occurred : ' + data;
+				});
+
+			$http.get('/api/application/categories')
+				.success(function(data) {
+					$scope.categories = data.categories;
+				})
+				.error(function(data) {
+					$scope.error = 'An error occurred : ' + data;
 				});
 
 			// when submitting the app to update, get the app and displays it
@@ -59,7 +123,7 @@ togglePlayControllers
 						$scope.app_update = data.appDetails;
 					})
 					.error(function(data) {
-						$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+						$scope.error = 'An error occurred : ' + data;
 					});
 			};
 			// when submitting the changes, get all apps and show them
@@ -78,7 +142,7 @@ togglePlayControllers
 							});
 					})
 					.error(function(data) {
-						$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+						$scope.error = 'An error occurred : ' + data;
 					});
 			};
 		}]
@@ -96,7 +160,7 @@ togglePlayControllers
 					$scope.app = data.appDetails;
 				})
 				.error(function(data) {
-					$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+					$scope.error = 'An error occurred : ' + data;
 				});
 		}]
 	)
@@ -111,7 +175,7 @@ togglePlayControllers
 					$scope.apps = data.apps;
 				})
 				.error(function(data) {
-					$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+					$scope.error = 'An error occurred : ' + data;
 				});			
 
 			$scope.deleteApp = function(id){
@@ -121,7 +185,7 @@ togglePlayControllers
 						$scope.apps = data.apps;
 					})
 					.error(function(data) {
-						$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+						$scope.error = 'An error occurred : ' + data;
 					});
 				// Close the modal
 				$('#modal-confirm-deletion').foundation('reveal', 'close');

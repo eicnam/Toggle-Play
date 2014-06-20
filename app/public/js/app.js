@@ -2,10 +2,11 @@
 
 var togglePlayApp = angular.module('togglePlayApp', [
   'ngRoute',
-  'togglePlayControllers'
+  'togglePlayControllers',
+  'flow'
   ]);
-togglePlayApp.config(['$routeProvider'/*, '$locationProvider'*/,
-  function($routeProvider/*, $locationProvider*/) {
+togglePlayApp.config(['$routeProvider', 'flowFactoryProvider'/*, '$locationProvider'*/,
+  function($routeProvider, flowFactoryProvider/*, $locationProvider*/) {
     $routeProvider.
       when('/Apps/Add', {
         templateUrl: 'views/partials/application_add.html',
@@ -27,6 +28,10 @@ togglePlayApp.config(['$routeProvider'/*, '$locationProvider'*/,
         templateUrl: 'views/partials/application_delete.html',
         controller : 'AppDeleteCtrl'
       }).
+      when('/Apps/Category/:category', {
+        templateUrl: 'views/partials/apps.html',
+        controller : 'AppsFilteredCtrl'
+      }).      
       when('/Apps', {
         templateUrl: 'views/partials/apps.html',
         controller : 'AppsCtrl'
@@ -36,10 +41,23 @@ togglePlayApp.config(['$routeProvider'/*, '$locationProvider'*/,
         controller : 'AppDetailsCtrl'
       }).
       when('/', {
-        templateUrl: 'views/home.html'
+        templateUrl: 'views/partials/apps.html',
+        controller : 'AppsCtrl'
       }).
       otherwise({
         redirectTo: '/'
+      });
+
+      flowFactoryProvider.defaults = {
+        target: 'http://localhost:8080/#/api/application/add/upload',
+        permanentErrors: [404, 500, 501],
+        maxChunkRetries: 1,
+        chunkRetryInterval: 5000,
+        simultaneousUploads: 1,
+        singleFile: true
+      };
+      flowFactoryProvider.on('catchAll', function (event) {
+        console.log('catchAll', arguments);
       });
 
     // use the HTML5 History API
