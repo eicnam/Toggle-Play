@@ -40,12 +40,16 @@ togglePlayApp.config(['$routeProvider', 'flowFactoryProvider'/*, '$locationProvi
         templateUrl: 'views/partials/application_details.html',
         controller : 'AppDetailsCtrl'
       }).
+      when('/404-NotFound', {
+        templateUrl: 'views/error/404.html',
+        controller : 'AppsCtrl'
+      }).
       when('/', {
         templateUrl: 'views/partials/apps.html',
         controller : 'AppsCtrl'
       }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/404-NotFound'
       });
 
       flowFactoryProvider.defaults = {
