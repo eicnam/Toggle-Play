@@ -35,6 +35,8 @@ router.route('/api/application/add')
 		newApp.category = req.body.category;
 		newApp.link = req.body.link;
 		newApp.mail = req.body.mail;
+		newApp.price = req.body.price;
+		newApp.linkDonation = req.body.linkDonation;
 
 		newApp.save(function(err) {
 			if (err)
@@ -64,6 +66,8 @@ router.route('/api/application/update/:appid')
 			_app.category = req.body.category;
 			_app.link = req.body.link;
 			_app.mail = req.body.mail;
+			_app.price = req.body.price;
+			_app.linkDonation = req.body.linkDonation;
 
 			_app.save(function(err) {
 				if (err)

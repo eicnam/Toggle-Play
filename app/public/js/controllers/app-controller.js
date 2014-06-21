@@ -82,6 +82,8 @@ togglePlayControllers
 
 			// when submitting the add form, send the text to the node API
 			$scope.createApp = function() {
+				$scope.newApp.price = $("#sliderPrice").text();
+
 				$http.post('/api/application/add', $scope.newApp)
 					.success(function(data) {
 						$scope.newApp = {}; // clear the form so our user is ready to enter another
@@ -91,6 +93,9 @@ togglePlayControllers
 						$scope.error = 'An error occurred : ' + data;
 					});
 			};
+
+			// Reinitialize foundation for modal uses
+			$(document).foundation();
 		}]
 	)
 	.controller('AppUpdateCtrl', ['$scope', '$http',
@@ -121,6 +126,7 @@ togglePlayControllers
 				$http.get('/api/application/' + name)
 					.success(function(data) {
 						$scope.app_update = data.appDetails;
+						$scope.message = "";
 					})
 					.error(function(data) {
 						$scope.error = 'An error occurred : ' + data;
@@ -138,7 +144,7 @@ togglePlayControllers
 								$scope.apps = data.apps;
 							})
 							.error(function(data) {
-								$scope.error = '<span style="color:red;">An error occurred : ' + data + '</span>';
+								$scope.error = 'An error occurred : ' + data;
 							});
 					})
 					.error(function(data) {

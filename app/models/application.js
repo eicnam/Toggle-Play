@@ -11,6 +11,8 @@ var ApplicationSchema   = new Schema({
 	, category : { label: String, color: String}
 	, link : String
 	, mail : String
+	, price : Number
+	, linkDonation: String
 });
 
 function nameValidator(name){

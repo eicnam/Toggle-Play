@@ -31,7 +31,7 @@
 			<hr>
 			<form>
 				<div class="row">
-					<div class="small-8 columns">
+					<div class="small-9 columns">
 						<div class="row">
 							<fieldset>
 								<legend>App definition</legend>
@@ -152,8 +152,44 @@
 								</div>				
 							</fieldset>
 						</div>
+						<br>
+						<div class="row">
+							<fieldset>
+								<legend>4 - What about price ?</legend>
+								<div class="row">
+									<div class="small-3 columns">
+										<label for="price" class="right inline" style="padding:0;margin:1.25rem 0;">Price (€)</label>
+									</div>
+									<div class="small-4 columns left">
+										<div class="row">
+											<input type="number" min="0" max="10" style="margin:10px 0;" ng-model="app_update.price">
+										</div>
+									</div>
+									<div class="small-5 columns left">
+										<div class="panel callout" style="padding:0.75rem;font-size:12px;margin:10px 0;">
+											For <b>Free App</b>, put cursor to 0.
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="small-3 columns">
+										<label for="linkDonation" class="right inline">Donation Link</label>
+									</div>
+									<div class="small-8 columns left">
+										<div class="row collapse">
+											<div class="small-3 large-2 columns">
+												<span class="prefix">http://</span>
+											</div>
+											<div class="small-9 large-10 columns">
+												<input type="text" ng-model="app_update.linkDonation" placeholder="Enter your URL...">
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</div>
 					</div>
-					<div class="small-4 columns text-center">
+					<div class="small-3 columns text-center">
 						<br>
 						<br>
 						<br>

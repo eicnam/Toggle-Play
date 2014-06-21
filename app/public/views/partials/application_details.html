@@ -34,9 +34,16 @@
 			<br>
 			<br>
 			<label>Cost : </label>
-			{{ 'Free' }}
+			<span ng-hide="app.price != 0"><b>Free</b></span>
+			<span ng-show="app.price > 0"><b>{{ app.price + " €" }}</b></span>
 			<br>
 			<br>
+			<div ng-show="app.linkDonation">
+				<label>Donation Link : </label>
+				<a href="app.linkDonation">{{ app.linkDonation }}</a>
+				<br>
+				<br>
+			</div>
 			<label>Publication Date : </label>
 			{{ app.publicationDate | date : 'fullDate' }}
 			<br>

@@ -108,7 +108,7 @@
 						<div class="small-3 columns">
 							<label for="link" class="right inline">Link</label>
 						</div>
-						<div class="small-7 columns left">
+						<div class="small-8 columns left">
 							<div class="row collapse">
 								<div class="small-3 large-2 columns">
 									<span class="prefix">http://</span>
@@ -123,7 +123,7 @@
 						<div class="small-3 columns">
 							<label for="email" class="right inline">E-mail</label>
 						</div>
-						<div class="small-7 columns left">
+						<div class="small-8 columns left">
 							<div class="row collapse">
 								<div class="small-3 large-2 columns">
 									<span class="prefix">@</span>
@@ -134,6 +134,50 @@
 							</div>
 						</div>
 					</div>				
+				</fieldset>
+			</div>
+			<br>
+			<div class="row">
+				<fieldset>
+					<legend>4 - What about price ?</legend>
+					<div class="row">
+						<div class="small-3 columns">
+							<label for="price" class="right inline" style="padding:0;margin:1.25rem 0;">Price (€)</label>
+						</div>
+						<div class="small-5 columns left">
+							<div class="row">
+								<div class="small-9 medium-10 columns">
+									<div class="range-slider" data-slider data-options="start: 0; end: 10;step: 0.50;display_selector: #sliderPrice;">
+										<span class="range-slider-handle"></span>
+										<span class="range-slider-active-segment"></span>
+									</div>
+								</div>
+								<div class="small-2 medium-2 columns" style="margin:1.25rem 0;">
+									<span id="sliderPrice"></span>
+								</div>
+							</div>
+						</div>
+						<div class="small-4 columns left">
+							<div class="panel callout" style="padding:0.75rem;font-size:12px;margin:10px 0;">
+								For <b>Free App</b>, put cursor to 0.
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-3 columns">
+							<label for="linkDonation" class="right inline">Donation Link</label>
+						</div>
+						<div class="small-8 columns left">
+							<div class="row collapse">
+								<div class="small-3 large-2 columns">
+									<span class="prefix">http://</span>
+								</div>
+								<div class="small-9 large-10 columns">
+									<input name="app[linkDonation]" type="text" ng-model="newApp.linkDonation" placeholder="Enter your URL...">
+								</div>
+							</div>
+						</div>
+					</div>
 				</fieldset>
 			</div>
 		</div>
