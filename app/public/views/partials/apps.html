@@ -1,18 +1,98 @@
-<h2><b>{{ title }}</b></h2> <h3>{{ subtitle }}</h3>
+<h2><b>{{ title }}</b></h2>
 <br>
+<div class="row">
+	<div class="row panel callout radius large-8 columns large-centered">
+		<div class="row">
+			<h3><b>Filters</b></h3>
+			<div class="small-2 columns">
+				<label for="name" class="right inline">Research by Name :</label>
+			</div>
+			<div class="small-2 columns">
+				<input type="text" ng-model="filterName">
+			</div>
+			<div class="small-1 columns">
+				<label for="Cost" class="right inline">Cost :</label>
+			</div>
+			<div class="small-2 columns">
+				<select ng-model="filterCost">
+					<option></option>
+					<option value="free">Free</option>
+					<option value="payable">Payable</option>
+				</select>
+			</div>
+			<div class="small-2 columns">
+				<label for="Category" class="right inline">Category :</label>
+			</div>
+			<div class="small-2 columns end">
+				<select ng-model="filterCategory" ng-options="category.label for category in categories">
+					<option></option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<h3><b>Sorts</b><small> <i>(the order of the sorts is important)</i></small></h3>
+			<div class="small-2 columns">
+				<label for="SortName" class="right inline">Sort by Name :</label>
+			</div>
+			<div class="small-2 columns">
+				<select ng-model="sortName" class="left">
+					<option></option>
+					<option value="name">A-Z</option>
+					<option value="-name">Z-A</option>
+				</select>
+			</div>				
+			<div class="small-2 columns">
+				<label for="SortPublicationDate" class="right inline">Publication Date :</label>
+			</div>
+			<div class="small-2 columns">
+				<select ng-model="sortPublicationDate" class="left">
+					<option></option>
+					<option value="-publicationDate">Newest</option>
+					<option value="publicationDate">Oldest</option>
+				</select>
+			</div>
+			<div class="small-1 columns">
+				<label for="SortPrice" class="right inline">Price :</label>
+			</div>
+			<div class="small-2 columns end">
+				<select ng-model="sortPrice" class="left">
+					<option></option>
+					<option value="price">Lowest</option>
+					<option value="-price">Highest</option>
+				</select>
+			</div>			
+		</div>
+	</div>
+</div>
 <br>
 <div class="row" data-equalizer>
-	<div class="large-3 columns" ng-repeat="app in apps">
-
+	<div class="large-2 columns" ng-repeat="app in apps | filter:filterName | CategoryFilter: filterCategory | PriceFilter: filterCost | orderBy:[sortName, sortPublicationDate, sortPrice]">
 		<ul class="pricing-table" data-equalizer-watch>
-			<li class="title">{{ app.name }}</li>
-			<li class="text-center"><img src="../../content/image-app-default.png" alt="{{ app.name }}"></li>
-			<li class="description">{{ app.author }}</li>
-			<li class="price"><i>free</i></li>
-			<li class="cta-button"><a class="button" ng-href="/#/Apps/{{ app.name }}">More Info ...</a></li>
+			<li class="title" style="padding-left:5px;padding-right:5px;">
+				{{ app.name }}
+			</li>
+			<li class="text-center">
+				<img src="../../content/image-app-default.png" alt="{{ app.name }}">
+			</li>
+			<li class="description" style="padding-left:3px;padding-right:3px;">
+				<span class="label" style="background-color:{{ app.category.color }};">
+					{{ app.category.label }}
+				</span>
+			</li>
+			<li ng-show="!app.price" class="price" style="font-size:1rem;font-weight:bold;background-color:#84D3EA;">
+				Free
+			</li>
+			<li ng-show="app.price > 0" class="price" style="font-size:1rem;font-weight:bold;background-color:#EAB484;">
+				{{ app.price + " €" }}
+			</li>
+			<li class="cta-button">
+				<a class="button radius tiny" ng-href="/#/Apps/{{ app.name }}">
+					Details ...
+				</a>
+			</li>
 		</ul>
 	</div>
-	<div ng-show="!apps.length" class="slide-animate-container">
+	<div ng-show="!apps.length">
 		<div class="slide-animate panel radius">
 			<h5>Sorry, we are Without Apps Fixed</h5>
 			<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>

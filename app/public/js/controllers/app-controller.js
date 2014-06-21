@@ -1,6 +1,8 @@
 'use strict';
 
-var togglePlayControllers = angular.module('togglePlayControllers', []);
+var togglePlayControllers = angular.module('togglePlayControllers', [
+	'TogglePlayAppFilters'
+]);
 
 togglePlayControllers
 	.controller('AppsCtrl', ['$scope','$http',
@@ -24,8 +26,6 @@ togglePlayControllers
 				.error(function(data) {
 					$scope.error = 'An error occurred : ' + data;
 				});
-
-			$scope.orderProp = 'publicationDate';
 		}]
 	)
 	.controller('AppsFilteredCtrl', ['$scope', '$routeParams', '$http',
