@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<h3><b>Sorts</b><small> <i>(the order of the sorts is important)</i></small></h3>
+			<h3><b>Sorts</b><small> <i>(the order of the selection of the sorts is important)</i></small></h3>
 			<div class="small-2 columns">
 				<label for="SortName" class="right inline">Sort by Name :</label>
 			</div>
@@ -67,13 +67,13 @@
 			</div>			
 		</div>
 		<div class="row right">
-			<h4>{{ filteredApps.length }} App(s) found</h4>
+			<h4>{{ filteredApps.length + '/' + apps.length }} App(s) found</h4>
 		</div>
 	</div>
 </div>
 <br>
 <div class="row" data-equalizer>
-	<div class="large-2 columns" data-ng-repeat="app in filteredApps = (apps | filter:filterName | CategoryFilter: filterCategory | PriceFilter: filterCost | orderBy:[sortName, sortPublicationDate, sortPrice])">
+	<div class="large-2 columns" data-ng-repeat="app in filteredApps = (apps | NameFilter: filterName | CategoryFilter: filterCategory | PriceFilter: filterCost | orderBy:[sortName, sortPublicationDate, sortPrice])">
 		<div class="row">
 			<ul class="pricing-table" data-equalizer-watch>
 				<li class="title" style="padding-left:5px;padding-right:5px;">

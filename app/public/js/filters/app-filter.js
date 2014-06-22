@@ -1,4 +1,27 @@
 angular.module('TogglePlayAppFilters', [])
+    .filter('NameFilter', [
+        function () {
+            return function (apps, pattern) {
+
+                if (pattern != null &&
+                    !angular.isUndefined(apps) &&
+                    !angular.isUndefined(pattern)) {
+                    
+                    var filteredApps = [];
+                    angular.forEach(apps, function (app) {
+                        if (angular.uppercase(app.name).indexOf(angular.uppercase(pattern)) == 0) {
+                            filteredApps.push(app);
+                        }
+                    });
+                    
+                    return filteredApps;
+                }
+                else {
+                    return apps;
+                }
+            };
+        }
+    ])
     .filter('CategoryFilter', [
         function () {
             return function (apps, selectedCategory) {
