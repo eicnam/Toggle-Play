@@ -1,4 +1,5 @@
-<h2><b>{{ title }}</b></h2>
+<h2 ng-hide="filterCategory"><b>{{ title }}</b></h2>
+<h2 ng-show="filterCategory"><b>{{ 'Apps > ' + filterCategory.label }}</b></h2>
 <br>
 <div class="row">
 	<div class="row panel callout radius large-8 columns large-centered" style="padding-bottom:5px;">
@@ -11,7 +12,7 @@
 				<input type="text" ng-model="filterName" autocomplete="off" list="suggestions">
 
 				<datalist id="suggestions">
-					<option data-ng-repeat="item in apps" value="{{item.name}}" />
+					<option data-ng-repeat="item in apps | limitTo:5" value="{{item.name}}" />
 				</datalist>
 			</div>
 			<div class="small-1 columns">
@@ -105,6 +106,18 @@
 		<div class="slide-animate panel radius">
 			<h5>Sorry, we are Without Apps Fixed</h5>
 			<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>
+		</div>
+	</div>
+	<div ng-show="filteredApps.length == 0">
+		<div class="slide-animate panel radius">
+			<h5>Sorry, any matches for the following research :</h5>
+			<br>
+			<ul>
+				<li ng-hide="!filterName">Name : <i>{{ filterName }}</i></li>
+				<li ng-hide="!filterCost">Cost : <i>{{ filterCost }}</i></li>
+				<li ng-hide="!filterCategory">Category : <span class="label" style="background-color:{{ filterCategory.color }};">{{ filterCategory.label }}</span></li>
+			</ul>
+			<p>Please check your filters or launch another research.</p>
 		</div>
 	</div>
 </div>

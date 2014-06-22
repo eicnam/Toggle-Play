@@ -8,7 +8,7 @@ togglePlayControllers
 	.controller('AppsCtrl', ['$scope','$http',
 		function ($scope,$http) {
 
-			$scope.title = 'Discover our wonderful Apps :';
+			$scope.title = 'Apps > All';
 
 			// when landing on the page, get all apps and show them
 			$http.get('/api/application')
@@ -35,7 +35,7 @@ togglePlayControllers
 
 			selectedCategory = selectedCategory.replace(/\&/g, " & ");
 
-			$scope.title = 'Apps > '+ selectedCategory;
+			$scope.title = 'Apps';
 
 			// when landing on the page, get all apps and show them
 			$http.get('/api/application')
