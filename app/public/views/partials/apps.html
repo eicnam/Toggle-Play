@@ -78,8 +78,8 @@
 		<div class="row">
 			<ul class="pricing-table" data-equalizer-watch>
 				<li class="title" style="padding-left:5px;padding-right:5px;">
-					{{ app.name }}
-				</li>
+					{{ app.name | limitTo : 18 }}
+				</li>				
 				<li class="text-center">
 					<img src="../../content/image-app-default.png" alt="{{ app.name }}">
 				</li>

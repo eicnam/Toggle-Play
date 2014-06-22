@@ -35,7 +35,7 @@ togglePlayControllers
 
 			selectedCategory = selectedCategory.replace(/\&/g, " & ");
 
-			$scope.title = 'Apps';
+			$scope.title = 'Apps > All';
 
 			// when landing on the page, get all apps and show them
 			$http.get('/api/application')
@@ -62,8 +62,6 @@ togglePlayControllers
 				.error(function(data) {
 					$scope.error = 'An error occurred : ' + data;
 				});
-
-			$scope.orderProp = 'publicationDate';
 		}]
 	)
 	.controller('AppAddCtrl', ['$scope','$http',
@@ -154,7 +152,7 @@ togglePlayControllers
 		}]
 	)	
 	.controller('AppDetailsCtrl', ['$scope','$routeParams', '$http',
-		function ($scope,$routeParams, $http) {
+		function ($scope, $routeParams, $http) {
 
 			var appName = $routeParams.appName;
 
@@ -168,6 +166,19 @@ togglePlayControllers
 				.error(function(data) {
 					$scope.error = 'An error occurred : ' + data;
 				});
+
+		// when landing on the page, get the first 6 apps in the same category
+			$http.get('/api/application')
+				.success(function(data) {
+					$scope.app_suggestions = [];
+					for(var i = 0 ; i < data.apps.length ; i++)
+						if(data.apps[i]._id != $scope.app._id &&
+							data.apps[i].category.label == $scope.app.category.label)
+							$scope.app_suggestions.push(data.apps[i]);
+				})
+				.error(function(data) {
+					$scope.error = 'An error occurred : ' + data;
+				});				
 		}]
 	)
 	.controller('AppDeleteCtrl', ['$scope','$routeParams', '$http',

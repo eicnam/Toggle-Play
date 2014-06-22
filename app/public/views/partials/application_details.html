@@ -7,28 +7,16 @@
 	</div>
 </div>
 <hr>
-<div class="row">
-	<div class="large-8 columns">
-		<h4><u><i><b>Description :</b></i></u></h4>
-		<br>
-		<blockquote><pre>{{ app.description }}</pre></blockquote>
-		<br>
-		Category : <span class="label" style="background-color:{{ app.category.color }};">{{ app.category.label }}</span>
-		<br>
-		<br>
-		Related link : <a href="app.link">{{ app.link }}</a>
-		<br>
-		<br>
-		Mail to contact support : <a class="email" href="mailto:app.mail">{{ app.mail }}</a>
-	</div>
-	<div class="large-4 columns panel">
-		<div id="image" class="row" style="text-align:center;">
-			<a class="th" href="../../content/image-app-default.png">
-				<img src="../../content/image-app-default.png" alt="{{ app.name }}" width="150" height="150">
-			</a>
+<div class="panel large-10 columns large-centered">
+	<div class="row">
+		<div class="large-4 columns">
+			<div id="image" class="row" style="text-align:center;">
+				<a class="th" href="../../content/image-app-default.png">
+					<img src="../../content/image-app-default.png" alt="{{ app.name }}" width="150" height="150">
+				</a>
+			</div>
 		</div>
-		<hr>
-		<div class"row text-center">
+		<div class="large-2 columns">
 			<label>Author : </label>
 			{{ app.author }}
 			<br>
@@ -38,12 +26,11 @@
 			<span ng-show="app.price > 0"><b>{{ app.price + " €" }}</b></span>
 			<br>
 			<br>
-			<div ng-show="app.linkDonation">
-				<label>Donation Link : </label>
-				<a href="app.linkDonation">{{ app.linkDonation }}</a>
-				<br>
-				<br>
-			</div>
+			<label>Donation Link : </label>
+			<a ng-show="app.linkDonation" href="app.linkDonation">{{ app.linkDonation }}</a>
+			<span ng-show="!app.linkDonation">N/A</span>
+		</div>
+		<div class="large-3 columns">
 			<label>Publication Date : </label>
 			{{ app.publicationDate | date : 'fullDate' }}
 			<br>
@@ -51,9 +38,68 @@
 			<label>Last Update Date : </label>
 			{{ app.lastUpdateDate | date : 'fullDate' }}
 		</div>
+		<div class="large-3 columns">
+			Category : <span class="label" style="background-color:{{ app.category.color }};">{{ app.category.label }}</span>
+			<br>
+			<br>
+			<label>Related Link : </label>
+			<span ng-show="app.link">
+				<a href="{{ app.link }}">Access to developer website</a>
+			</span>
+			<span ng-show="!app.link">N/A</span>
+			<br>
+			<br>
+			<label>Support : </label>
+			<span ng-show="app.mail">
+				<a href="mailto:{{ app.mail }}">Contact developers</a>
+			</span>
+			<span ng-show="!app.mail">N/A</span>
+		</div>
+	</div>
+	<hr>
+	<div class="row"></div>
+</div>
+<div class="row">
+	<div class="large-12 columns large-centered">
+		<h4><u><i><b>Description :</b></i></u></h4>
+		<br>
+		<pre style="word-wrap:break-word;font-size:14px;font-family:Roboto,Arial,sans-serif;line-height:20px;">{{ app.description }}</pre>
+		<br>
 	</div>
 </div>
-<br>
+<hr ng-show="app_suggestions.length > 0">
+<div ng-show="app_suggestions.length > 0" class="row">
+	<h3>You will be also interested in ...</h3>
+	{{ test }}
+	<div class="row">
+		<div class="small-2 columns left row" ng-repeat="item in app_suggestions" data-equalizer>
+			<ul class="pricing-table" data-equalizer-watch>
+				<li class="title" style="padding-left:5px;padding-right:5px;">
+					{{ item.name | limitTo : 18 }}
+				</li>				
+				<li class="text-center">
+					<img src="../../content/image-app-default.png" alt="{{ item.name }}">
+				</li>
+				<li class="description" style="padding-left:3px;padding-right:3px;">
+					<span class="label" style="background-color:{{ item.category.color }};">
+						{{ item.category.label }}
+					</span>
+				</li>
+				<li ng-show="!item.price" class="price" style="font-size:1rem;font-weight:bold;background-color:#84D3EA;">
+					Free
+				</li>
+				<li ng-show="item.price > 0" class="price" style="font-size:1rem;font-weight:bold;background-color:#EAB484;">
+					{{ item.price + " €" }}
+				</li>
+				<li class="cta-button">
+					<a class="button radius tiny" ng-href="/#/Apps/{{ item.name }}">
+						Details ...
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
 <br>
 <div ng-show="error" data-alert class="alert-box alert round">
 	{{ error }}
