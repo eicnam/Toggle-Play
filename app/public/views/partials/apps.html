@@ -8,7 +8,11 @@
 				<label for="name" class="right inline">Research by Name :</label>
 			</div>
 			<div class="small-2 columns">
-				<input type="text" ng-model="filterName">
+				<input type="text" ng-model="filterName" autocomplete="off" list="suggestions">
+
+				<datalist id="suggestions">
+					<option data-ng-repeat="item in apps" value="{{item.name}}" />
+				</datalist>
 			</div>
 			<div class="small-1 columns">
 				<label for="Cost" class="right inline">Cost :</label>
