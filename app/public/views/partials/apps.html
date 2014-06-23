@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<h3><b>Sorts</b><small> <i>(the order of the selection of the sorts is important)</i></small></h3>
+			<h3><b>Sorts</b><small> <i>(the order of the selection of the sorts is important : Name > Date > Cost)</i></small></h3>
 			<div class="small-2 columns">
 				<label for="SortName" class="right inline">Sort by Name :</label>
 			</div>
@@ -73,6 +73,9 @@
 	</div>
 </div>
 <br>
+<div class="row text-center" ng-show="!loaded">
+	<img src="../../content/loader.gif" alt="Loading...">
+</div>
 <div class="row" data-equalizer>
 	<div class="large-2 columns" data-ng-repeat="app in filteredApps = (apps | NameFilter: filterName | CategoryFilter: filterCategory | PriceFilter: filterCost | orderBy:[sortName, sortPublicationDate, sortPrice])">
 		<div class="row">
@@ -102,13 +105,13 @@
 			</ul>
 		</div>
 	</div>
-	<div ng-show="!apps.length">
+	<div ng-show="!apps.length && loaded">
 		<div class="slide-animate panel radius">
 			<h5>Sorry, we are Without Apps Fixed</h5>
 			<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>
 		</div>
 	</div>
-	<div ng-show="filteredApps.length == 0">
+	<div ng-show="filteredApps.length == 0 && loaded">
 		<div class="slide-animate panel radius">
 			<h5>Sorry, any matches for the following research :</h5>
 			<br>

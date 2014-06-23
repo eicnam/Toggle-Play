@@ -9,11 +9,13 @@ togglePlayControllers
 		function ($scope,$http) {
 
 			$scope.title = 'Apps > All';
+			$scope.loaded = false;
 
 			// when landing on the page, get all apps and show them
 			$http.get('/api/application')
 				.success(function(data) {
 					$scope.apps = data.apps;
+					$scope.loaded = true;
 				})
 				.error(function(data) {
 					$scope.error = 'An error occurred : ' + data;
@@ -36,11 +38,13 @@ togglePlayControllers
 			selectedCategory = selectedCategory.replace(/\&/g, " & ");
 
 			$scope.title = 'Apps > All';
+			$scope.loaded = false;
 
 			// when landing on the page, get all apps and show them
 			$http.get('/api/application')
 				.success(function(data) {
 					$scope.apps = data.apps;
+					$scope.loaded = true;
 				})
 				.error(function(data) {
 					$scope.error = 'An error occurred : ' + data;
