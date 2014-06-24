@@ -32,6 +32,7 @@ router.route('/api/application/add')
 		newApp.description = req.body.description;
 		newApp.publicationDate = new Date();
 		newApp.lastUpdateDate = new Date();
+		newApp.image = req.body.image;
 		newApp.category = req.body.category;
 		newApp.link = req.body.link;
 		newApp.mail = req.body.mail;
@@ -63,6 +64,7 @@ router.route('/api/application/update/:appid')
 			_app.description = req.body.description;
 			_app.publicationDate = _app.publicationDate;
 			_app.lastUpdateDate = new Date();
+			_app.image = req.body.image;
 			_app.category = req.body.category;
 			_app.link = req.body.link;
 			_app.mail = req.body.mail;

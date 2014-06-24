@@ -50,39 +50,41 @@
 					<div class="row" style="margin-top:5px;">
 						<div class="small-10 columns small-centered panel callout" style="padding: 4px;">
 							A default image will be attributed if do not want to provide a custom image.
+							<br>
+							<br>
+							<small><i>Most appropriate resolution : 150x150.</i></small>
 						</div>
 					</div>
 					<div class="row">
 						<div class="small-3 columns">
-							<label for="image-upload" class="right inline">Upload image</label>
+							<label for="image-url" class="right inline">Image URL</label>
 						</div>
-						<div class="small-9 columns" flow-init flow-name="newApp.image">
-							<button class="button radius tiny success" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Select image</button>
-							<button class="button radius tiny secondary" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Change</button>
-							<button class="button radius tiny alert" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</button>
-							Only PNG,GIF,JPG files allowed.
-							<div ng-hide="$flow.files.length">
-								<img src="../../content/image-app-default.png" alt="Default Image" />
-								<br>
-								<br>
-								<table style="margin-bottom:0;">
-									<tr>
-										<td>Attributed file :</td>
-										<td>Defaut image</td>
-									</tr>
-								</table>
+						<div class="small-9 columns">
+							<div class="row collapse">
+								<div class="small-3 large-2 columns">
+									<span class="prefix">URL</span>
+								</div>
+								<div class="small-9 large-10 columns">
+									<input name="app[image.url]" type="text" ng-model="newApp.image.url" placeholder="Provide an URL...">
+								</div>
 							</div>
-							<div ng-show="$flow.files.length">
-								<img flow-img="$flow.files[0]" height="150px" />
-								<br>
-								<br>
-								<table style="margin-bottom:0;">
-									<tr ng-repeat="file in $flow.files">
-										<td>Selected file : </td>
-										<td>{{file.name}}</td>
-									</tr>
-								</table>
-							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-3 columns">
+							<label for="image-label" class="right inline">Image label</label>
+						</div>
+						<div class="small-9 columns">
+							<input name="app[image.label]" type="text" ng-model="newApp.image.label" placeholder="Describe the image...">
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-3 columns">
+							<label for="image-preview" class="right inline">Image Preview</label>
+						</div>
+						<div class="small-9 columns">
+							<img ng-show="newApp.image.url" src="{{newApp.image.url}}" alt="{{newApp.image.label}}" height="150px" width="150px">
+							<img ng-show="!newApp.image.url" src="../../content/image-app-default.png" alt="App Default image">
 						</div>
 					</div>
 				</fieldset>
@@ -111,7 +113,7 @@
 						<div class="small-8 columns left">
 							<div class="row collapse">
 								<div class="small-3 large-2 columns">
-									<span class="prefix">http://</span>
+									<span class="prefix">URL</span>
 								</div>
 								<div class="small-9 large-10 columns">
 									<input name="app[link]" type="text" ng-model="newApp.link" placeholder="Enter your URL...">
@@ -170,7 +172,7 @@
 						<div class="small-8 columns left">
 							<div class="row collapse">
 								<div class="small-3 large-2 columns">
-									<span class="prefix">http://</span>
+									<span class="prefix">URL</span>
 								</div>
 								<div class="small-9 large-10 columns">
 									<input name="app[linkDonation]" type="text" ng-model="newApp.linkDonation" placeholder="Enter your URL...">

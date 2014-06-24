@@ -84,6 +84,9 @@ togglePlayControllers
 
 			// when submitting the add form, send the text to the node API
 			$scope.createApp = function() {
+				$scope.newApp.image.url = 
+					(angular.isUndefined($scope.newApp.image.url)) ? 
+						'../../content/image-app-default.png' : $scope.newApp.image.url;
 				$scope.newApp.price = $("#sliderPrice").text();
 
 				$http.post('/api/application/add', $scope.newApp)
@@ -136,6 +139,10 @@ togglePlayControllers
 			};
 			// when submitting the changes, get all apps and show them
 			$scope.updateApp = function(id){
+				$scope.app_update.image.url = 
+					(angular.isUndefined($scope.app_update.image.url) || $scope.app_update.image.url == "") ? 
+						'../../content/image-app-default.png' : $scope.app_update.image.url;
+
 				$http.put('/api/application/update/' + id, $scope.app_update)
 					.success(function(data) {
 						$scope.message = data.message;
@@ -171,18 +178,22 @@ togglePlayControllers
 					$scope.error = 'An error occurred : ' + data;
 				});
 
-		// when landing on the page, get the first 6 apps in the same category
+			// when landing on the page, get the first 6 apps in the same category
 			$http.get('/api/application')
 				.success(function(data) {
 					$scope.app_suggestions = [];
-					for(var i = 0 ; i < data.apps.length ; i++)
-						if(data.apps[i]._id != $scope.app._id &&
-							data.apps[i].category.label == $scope.app.category.label)
-							$scope.app_suggestions.push(data.apps[i]);
+					if(data.apps.length > 1)
+						for(var i = 0 ; i < data.apps.length ; i++)
+							if(data.apps[i]._id != $scope.app._id &&
+								data.apps[i].category.label == $scope.app.category.label)
+								$scope.app_suggestions.push(data.apps[i]);
 				})
 				.error(function(data) {
 					$scope.error = 'An error occurred : ' + data;
-				});				
+				});
+
+			// Reinitialize foundation for modal uses
+			$(document).foundation();
 		}]
 	)
 	.controller('AppDeleteCtrl', ['$scope','$routeParams', '$http',

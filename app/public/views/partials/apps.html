@@ -84,7 +84,8 @@
 					{{ app.name | limitTo : 18 }}
 				</li>				
 				<li class="text-center">
-					<img src="../../content/image-app-default.png" alt="{{ app.name }}">
+					<img ng-show="app.image.url" src="{{ app.image.url }}" alt="{{ app.image.label }}" height="150px" width="150px">
+					<img ng-show="!app.image.url" src="../../content/image-app-default.png" alt="{{ app.image.label }}">
 				</li>
 				<li class="description" style="padding-left:3px;padding-right:3px;">
 					<span class="label" style="background-color:{{ app.category.color }};">
@@ -111,7 +112,7 @@
 			<p>Unfortunately, any Apps have been uploaded ... But, we suggest you to create one <a href="/#/Apps/Add">here</a>.</p>
 		</div>
 	</div>
-	<div ng-show="filteredApps.length == 0 && loaded">
+	<div ng-show="filteredApps.length == 0 && apps.length > 0 && loaded">
 		<div class="slide-animate panel radius">
 			<h5>Sorry, any matches for the following research :</h5>
 			<br>

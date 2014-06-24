@@ -7,6 +7,9 @@
 		<h3><b>Which App want you to delete ?</b></h3>
 		<br>
 			<div class="row" ng-repeat="app in apps">
+				<div class="small-2 columns">
+					<img src="{{ app.image.url }}" alt="{{ app.image.label }}" height="50px" width="50px">
+				</div>
 				<div class="small-4 columns">
 					<label for="right-label" style="margin-bottom:0;" class="left inline"><a ng-href="/#/Apps/{{ app.name }}">{{ app.name }}</a></label>
 				</div>

@@ -11,8 +11,8 @@
 	<div class="row">
 		<div class="large-4 columns">
 			<div id="image" class="row" style="text-align:center;">
-				<a class="th" href="../../content/image-app-default.png">
-					<img src="../../content/image-app-default.png" alt="{{ app.name }}" width="150" height="150">
+				<a class="th" href="{{ app.image.url }}">
+					<img src="{{ app.image.url }}" alt="{{  app.image.label }}" width="150px" height="150px">
 				</a>
 			</div>
 		</div>
@@ -57,7 +57,16 @@
 		</div>
 	</div>
 	<hr>
-	<div class="row"></div>
+	<div class="row">
+		<div class="large-4 columns"></div>
+		<div class="large-4 columns"></div>
+		<div class="large-4 columns">
+			<div id="btn_download" class="row" style="text-align:center;">
+				<button ng-show="app.price == 0" class="tiny radius success" data-reveal-id="modal-download">Download</button>
+				<button ng-show="app.price > 0" class="tiny radius success" data-reveal-id="modal-confirm-basket">Add to Basket</button>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="row">
 	<div class="large-12 columns large-centered">
@@ -103,4 +112,41 @@
 <br>
 <div ng-show="error" data-alert class="alert-box alert round">
 	{{ error }}
+</div>
+
+<div id="modal-confirm-basket" class="reveal-modal" data-reveal>
+	<div class="row">
+		<h2>Basket confirmation</h2>
+	</div>
+	<br>
+	<div class="row">
+		<div class="large-8 columns">
+			<p>The App : <a ng-href="/#/Apps/{{ app.name }}">{{ app.name }}</a> has been added to your basket.</p>
+			<p>To download it, browse to your basket and finalize your shopping ...</p>
+			<p>... or continue your purchase !</p>
+		</div>
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="modal-download" class="reveal-modal" data-reveal>
+	<div class="row">
+		<h2>Download of {{ app.name }}</h2>
+	</div>
+	<br>
+	<div class="row">
+		<div class="large-8 columns">
+			<p>You are going to download the following App : <a ng-href="/#/Apps/{{ app.name }}">{{ app.name }}</a> !</p>
+			<p>Please wait while the link is generated or click on the 'Download right now' button...</p>
+
+			<br>
+			<span class="text-center">
+				<img src="../../content/loader.gif" alt="Loading...">
+			</span>
+		</div>
+		<div class="large-4 columns">
+			<button class="tiny button radius success">Download right now !</button>
+		</div>
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
 </div>

@@ -2,11 +2,10 @@
 
 var togglePlayApp = angular.module('togglePlayApp', [
   'ngRoute',
-  'togglePlayControllers',
-  'flow'
+  'togglePlayControllers'
   ]);
-togglePlayApp.config(['$routeProvider', 'flowFactoryProvider'/*, '$locationProvider'*/,
-  function($routeProvider, flowFactoryProvider/*, $locationProvider*/) {
+togglePlayApp.config(['$routeProvider'/*, '$locationProvider'*/,
+  function($routeProvider /*, $locationProvider*/) {
     $routeProvider.
       when('/Apps/Add', {
         templateUrl: 'views/partials/application_add.html',
@@ -50,18 +49,6 @@ togglePlayApp.config(['$routeProvider', 'flowFactoryProvider'/*, '$locationProvi
       }).
       otherwise({
         redirectTo: '/404-NotFound'
-      });
-
-      flowFactoryProvider.defaults = {
-        target: 'http://localhost:8080/#/api/application/add/upload',
-        permanentErrors: [404, 500, 501],
-        maxChunkRetries: 1,
-        chunkRetryInterval: 5000,
-        simultaneousUploads: 1,
-        singleFile: true
-      };
-      flowFactoryProvider.on('catchAll', function (event) {
-        console.log('catchAll', arguments);
       });
 
     // use the HTML5 History API

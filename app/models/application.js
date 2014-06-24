@@ -7,7 +7,7 @@ var ApplicationSchema   = new Schema({
 	, description : String
 	, publicationDate : { type: Date, default: Date.now}
 	, lastUpdateDate : { type: Date, default: Date.now}
-	//, image : { data: Buffer, contentType: String }
+	, image : { label: String, url: String}
 	, category : { label: String, color: String}
 	, link : String
 	, mail : String
