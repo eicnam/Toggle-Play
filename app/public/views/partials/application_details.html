@@ -87,7 +87,7 @@
 					{{ item.name | limitTo : 18 }}
 				</li>				
 				<li class="text-center">
-					<img src="../../content/image-app-default.png" alt="{{ item.name }}">
+					<img src="{{ item.image.url }}" alt="{{  item.image.label }}" width="150px" height="150px">
 				</li>
 				<li class="description" style="padding-left:3px;padding-right:3px;">
 					<span class="label" style="background-color:{{ item.category.color }};">
